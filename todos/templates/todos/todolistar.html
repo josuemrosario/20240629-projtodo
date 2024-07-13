@@ -3,12 +3,62 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
     <title>Listagem de Tarefas</title>
   </head>
   <body>
-    <h1>rota: /</h1>
-    <h1>Arquivo: todolistar.html</h1>
+    {% comment %}inicio da barra de navegação{% endcomment %}
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">TODO</a>
+      </div>
+    </nav>
+    {% comment %}Fim da barra de navegação{% endcomment %}
 
-    {{ tarefas }}
+    <main class="container">
+      <p class="text-start fs-4 fw-bold">Listagem de tarefas</p>
+      
+      {% comment %} Inicio botao de criacao de tarefa {% endcomment %}
+      <a href="{% url 'todo_criar' %}" 
+         type="button" class="btn btn-success">Nova Tarefa</a>
+      {% comment %} Fim botao de criacao de tarefa {% endcomment %}
+
+      {% comment %}Inicio da tabela{% endcomment %}
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Criação</th>
+            <th scope="col">Finalizacao</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% comment %} {% for tarefa in tarefas %} {% endcomment %}
+          {% for tarefa in todo_list %}
+            <tr>
+              <th scope="row">{{ tarefa.id }}</th>
+              <td>{{ tarefa.titulo }}</td>
+              <td>{{ tarefa.dtCriacao|date:'SHORT_DATE_FORMAT' }}</td>
+              <td>{{ tarefa.dtFinalizacao|date:'SHORT_DATE_FORMAT'|default:'-' }}</td>
+              {% comment %}botoes de acoes{% endcomment %}
+              <td>
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                  <button type="button" class="btn btn-warning">Editar</button>
+                  <button type="button" class="btn btn-danger">Excluir</button>
+                </div>
+              </td>
+            
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% comment %}fim da tabela{% endcomment %}
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
   </body>
 </html>
