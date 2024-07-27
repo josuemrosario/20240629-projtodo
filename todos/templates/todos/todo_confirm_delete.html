@@ -1,0 +1,23 @@
+{% extends 'padrao.html' %}
+
+
+{% block titulo %}
+  Exclusao de tarefas
+{% endblock %}
+
+
+{% block subtitulo %}
+  Exclusao de tarefas
+{% endblock %}
+
+
+{% block conteudo %}
+  {% comment %}inicio do modal de confirmação de exclusão{% endcomment %}
+  <script>
+    window.addEventListener("load", (event) => {
+       // Exibir o modal ao carregar a página
+      $('#modalDeletar').modal('show')
+    });
+  </script>
+  {% comment %}fim do modal de confirmação de exclusão{% endcomment %}
+{% endblock %}
