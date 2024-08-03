@@ -21,6 +21,10 @@ from django.urls import path
 from todos.views import todoListarView,todoCriarView,todoAtualizarView
 from todos.views import todoDeletarView
 from todos.views import todoCompletarView
+from todos.views import todoCadastrarView
+from todos.views import todoLoginView
+from todos.views import todoLogoutView
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -30,5 +34,11 @@ urlpatterns = [
     path("criar", todoCriarView.as_view(),name='todo_criar'),
     path("atualizar/<int:pk>", todoAtualizarView.as_view(),name='todo_atualizar'),
     path("deletar/<int:pk>", todoDeletarView.as_view(),name='todo_deletar'),
-    path("completar/<int:pk>", todoCompletarView.as_view(),name='todo_completar')
+    path("completar/<int:pk>", todoCompletarView.as_view(),name='todo_completar'),
+
+    #view de cadastro de usuario
+    path("cadastrar", todoCadastrarView,name='todo_cadastrar'),
+    path("login", todoLoginView,name='todo_login'),
+    path("logout",todoLogoutView,name='todo_logout'),
+
 ]

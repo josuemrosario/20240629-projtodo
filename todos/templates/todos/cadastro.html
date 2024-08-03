@@ -1,0 +1,30 @@
+{% extends 'padrao.html' %}
+
+{% block titulo %}
+    {{titulo_pagina}}
+{% endblock %}
+
+{% block subtitulo %}
+    {{titulo_pagina}}
+{% endblock %}
+
+{% block conteudo %}
+  <form method="POST">
+    {% csrf_token %}
+    
+    <div class="form-group">
+      <label for="usuario">usuario</label>
+      <input type="text" class="form-control  {% if msg %} is-invalid {% endif %} " id="usuario" name="usuario" aria-describedby="emailHelp" placeholder="Seu usuario" />
+      {% if msg %}
+        <div class="invalid-feedback">{{ msg }}</div>
+      {% endif %}
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputPassword1">Senha</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" name="senha" placeholder="Senha" />
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+  </form>
+  <a onclick="window.location.href='{% url 'todo_cadastrar' %}'" href="#">Se deseja criar seu usuário clique aqui</a>
+{% endblock %}
